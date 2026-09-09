@@ -370,9 +370,9 @@ export function CharacterSetupScreen() {
 
         <section className="mt-6 rounded-md border border-border bg-surface p-3">
           <h2 className="text-sm font-medium text-text-primary">Class</h2>
-          <div className="mt-2 flex gap-2">
+          <div className="mt-2 grid grid-cols-4 gap-2">
             {(['barbarian', 'bard', 'cleric', 'druid', 'fighter', 'monk', 'paladin', 'ranger', 'wizard', 'rogue', 'sorcerer', 'warlock'] as const).map((id) => (
-              <label key={id} className={`flex-1 rounded-md border p-2 text-center text-sm ${classId === id ? 'border-accent bg-surface' : 'border-border bg-surface'}`}>
+              <label key={id} className={`rounded-md border p-2 text-center text-sm ${classId === id ? 'border-accent bg-surface' : 'border-border bg-surface'}`}>
                 <input type="radio" name="classId" checked={classId === id} onChange={() => selectClass(id)} className="mr-1.5" />
                 {registry.classes[id]?.name}
               </label>
