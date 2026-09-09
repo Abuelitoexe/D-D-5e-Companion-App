@@ -119,7 +119,7 @@ export function CharacterScreen() {
                   onChange={(e) => setAbilityScore(ability, Number(e.target.value))}
                   min={1}
                   max={30}
-                  className="mt-0.5 w-full rounded-md border border-border bg-page px-1 py-1 text-center text-sm font-medium text-text-primary"
+                  className="mt-0.5 w-full rounded-md border border-border bg-surface px-1 py-1 text-center text-sm font-medium text-text-primary"
                 />
                 <div className="mt-0.5 text-text-secondary">{modifier >= 0 ? '+' : ''}{modifier}</div>
               </div>

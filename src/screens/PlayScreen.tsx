@@ -18,7 +18,7 @@ const UNAVAILABLE_LABEL: Record<string, string> = {
 function ActionSection({ title, actions, onUse }: { title: string; actions: AvailableAction[]; onUse: (a: AvailableAction) => void }) {
   if (actions.length === 0) return null
   return (
-    <section className="mt-4">
+    <section className="mt-4 rounded-md border border-border bg-surface p-3">
       <h2 className="text-sm font-semibold text-text-primary">{title}</h2>
       <div className="mt-2 flex flex-col gap-1.5">
         {actions.map((a) => (

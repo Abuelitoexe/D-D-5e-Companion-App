@@ -9,10 +9,10 @@ export function CharacterSelectScreen() {
   return (
     <div className="min-h-screen bg-page">
       <div className="mx-auto max-w-[960px] px-4 py-6">
-        <h1 className="text-xl font-semibold text-text-primary">Your Characters</h1>
+        <h1 className="text-xl font-semibold">Your Characters</h1>
 
         {characters.length === 0 ? (
-          <p className="mt-2 text-sm text-text-secondary">No characters yet. Create one to get started.</p>
+          <p className="mt-2 text-sm text-page-muted">No characters yet. Create one to get started.</p>
         ) : (
           <ul className="mt-4 flex flex-col gap-2">
             {characters.map((character) => {

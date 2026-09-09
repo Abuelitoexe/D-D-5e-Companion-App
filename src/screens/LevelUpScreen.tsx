@@ -134,7 +134,7 @@ function AbilityScoreImprovementPicker({
                 <select
                   value={allocation[0] ?? ''}
                   onChange={(e) => updateSlot(index, e.target.value ? [e.target.value as AbilityName] : [])}
-                  className="mt-1.5 w-full rounded-md border border-border bg-page px-2 py-1 text-xs"
+                  className="mt-1.5 w-full rounded-md border border-border bg-surface px-2 py-1 text-xs"
                 >
                   <option value="">Select an ability…</option>
                   {ABILITIES.filter((a) => scoresBefore[a] < 20).map((a) => (
@@ -152,7 +152,7 @@ function AbilityScoreImprovementPicker({
                         next[slotIndex] = e.target.value as AbilityName
                         updateSlot(index, next)
                       }}
-                      className="rounded-md border border-border bg-page px-2 py-1 text-xs"
+                      className="rounded-md border border-border bg-surface px-2 py-1 text-xs"
                     >
                       <option value="">Select…</option>
                       {ABILITIES.filter((a) => scoresBefore[a] < 20 && a !== allocation[1 - slotIndex]).map((a) => (
@@ -274,7 +274,7 @@ export function LevelUpScreen() {
   const preview = atMaxLevel ? null : getLevelUpPreview(previewCharacter, targetLevel, registry)
 
   if (atMaxLevel) {
-    return <p className="text-sm text-text-secondary">This character is already at level 20.</p>
+    return <p className="rounded-md border border-border bg-surface p-3 text-sm text-text-secondary">This character is already at level 20.</p>
   }
   if (!preview) return null
 
@@ -388,10 +388,10 @@ export function LevelUpScreen() {
 
   return (
     <div>
-      <h1 className="text-xl font-semibold text-text-primary">Level {character.level} → {targetLevel}</h1>
+      <h1 className="text-xl font-semibold">Level {character.level} → {targetLevel}</h1>
 
       {preview.gains.length > 0 && (
-        <section className="mt-4">
+        <section className="mt-4 rounded-md border border-border bg-surface p-3">
           <h2 className="text-sm font-semibold text-text-primary">You Gain</h2>
           <div className="mt-2 flex flex-col gap-1.5">
             {preview.gains.map((g, i) => (
@@ -405,7 +405,7 @@ export function LevelUpScreen() {
       )}
 
       {preview.resourceChanges.length > 0 && (
-        <section className="mt-4">
+        <section className="mt-4 rounded-md border border-border bg-surface p-3">
           <h2 className="text-sm font-semibold text-text-primary">Resource Increase</h2>
           <div className="mt-2 flex flex-col gap-1.5">
             {preview.resourceChanges.map((r) => (
@@ -419,7 +419,7 @@ export function LevelUpScreen() {
       )}
 
       {(needsSubclass || preview.requiredChoices.length > 0 || currentDeficits.cantrips > 0 || currentDeficits.spellbook > 0 || currentDeficits.prepared > 0) && (
-        <section className="mt-4">
+        <section className="mt-4 rounded-md border border-border bg-surface p-3">
           <h2 className="text-sm font-semibold text-text-primary">You Need to Choose</h2>
           <div className="mt-2 flex flex-col gap-2">
             <SpellPicker title="New Cantrips" count={currentDeficits.cantrips} eligibleSpellIds={eligibleNewCantrips} draft={draftCantrips} onChange={setDraftCantrips} />
@@ -431,7 +431,7 @@ export function LevelUpScreen() {
                 <select
                   value={subclassChoice}
                   onChange={(e) => setSubclassChoice(e.target.value)}
-                  className="mt-2 w-full rounded-md border border-border bg-page px-2 py-1.5 text-sm"
+                  className="mt-2 w-full rounded-md border border-border bg-surface px-2 py-1.5 text-sm"
                 >
                   <option value="">Select…</option>
                   {availableSubclasses.map((s) => (

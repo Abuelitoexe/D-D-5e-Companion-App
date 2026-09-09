@@ -7,7 +7,7 @@ export function SpellsScreen() {
   const [managingPrepared, setManagingPrepared] = useState(false)
 
   const state = getSpellcastingState(character, registry)
-  if (!state) return <p className="text-sm text-text-secondary">Not a spellcaster.</p>
+  if (!state) return <p className="rounded-md border border-border bg-surface p-3 text-sm text-text-secondary">Not a spellcaster.</p>
 
   const cantrips = state.cantripsKnown.map((id) => registry.spells[id]).filter(Boolean)
   const prepared = state.preparedSpellIds.map((id) => registry.spells[id]).filter(Boolean)
@@ -25,7 +25,7 @@ export function SpellsScreen() {
   return (
     <div>
       {state.slots.length > 0 && (
-        <section>
+        <section className="rounded-md border border-border bg-surface p-3">
           <h2 className="text-sm font-semibold text-text-primary">Spell Slots</h2>
           <div className="mt-2 flex flex-wrap gap-2">
             {state.slots.map((slot) => (
@@ -38,7 +38,7 @@ export function SpellsScreen() {
         </section>
       )}
 
-      <section className="mt-4">
+      <section className="mt-4 rounded-md border border-border bg-surface p-3">
         <h2 className="text-sm font-semibold text-text-primary">Cantrips ({cantrips.length}/{state.cantripsMax})</h2>
         <div className="mt-2 flex flex-col gap-1.5">
           {cantrips.map((spell) => (
@@ -51,7 +51,7 @@ export function SpellsScreen() {
         </div>
       </section>
 
-      <section className="mt-4">
+      <section className="mt-4 rounded-md border border-border bg-surface p-3">
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-semibold text-text-primary">Prepared Spells ({prepared.length}/{state.preparedMax})</h2>
           <button type="button" onClick={() => setManagingPrepared((v) => !v)} className="rounded-md border border-border px-2 py-1 text-xs font-medium text-text-primary">
@@ -85,7 +85,7 @@ export function SpellsScreen() {
         </div>
       </section>
 
-      <section className="mt-4">
+      <section className="mt-4 rounded-md border border-border bg-surface p-3">
         <h2 className="text-sm font-semibold text-text-primary">Spellbook ({spellbook.length}/{state.spellbookMax})</h2>
         <div className="mt-2 flex flex-wrap gap-1.5">
           {spellbook.map((spell) => (

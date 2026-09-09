@@ -27,7 +27,7 @@ export function AbilitiesScreen() {
       )}
 
       {resources.length > 0 && (
-        <section className="mt-4">
+        <section className="mt-4 rounded-md border border-border bg-surface p-3">
           <h2 className="text-sm font-semibold text-text-primary">Resources</h2>
           <div className="mt-2 flex flex-col gap-1.5">
             {resources.map((r) => (
@@ -40,7 +40,7 @@ export function AbilitiesScreen() {
         </section>
       )}
 
-      <section className="mt-4">
+      <section className="mt-4 rounded-md border border-border bg-surface p-3">
         <h2 className="text-sm font-semibold text-text-primary">Activated Features</h2>
         <div className="mt-2 flex flex-col gap-1.5">
           {activeFeatures.map((f) => (
@@ -55,7 +55,7 @@ export function AbilitiesScreen() {
         </div>
       </section>
 
-      <section className="mt-4">
+      <section className="mt-4 rounded-md border border-border bg-surface p-3">
         <h2 className="text-sm font-semibold text-text-primary">Passive Features</h2>
         <div className="mt-2 flex flex-col gap-1.5">
           {passiveFeatures.map((f) => (

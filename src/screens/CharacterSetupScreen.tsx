@@ -321,10 +321,10 @@ export function CharacterSetupScreen() {
   return (
     <div className="min-h-screen bg-page pb-8">
       <div className="mx-auto max-w-[960px] px-4 py-6">
-        <h1 className="text-xl font-semibold text-text-primary">Create Character</h1>
-        <p className="mt-1 text-sm text-text-secondary">Choose a class, background, and species to get started.</p>
+        <h1 className="text-xl font-semibold">Create Character</h1>
+        <p className="mt-1 text-sm text-page-muted">Choose a class, background, and species to get started.</p>
 
-        <section className="mt-6">
+        <section className="mt-6 rounded-md border border-border bg-surface p-3">
           <h2 className="text-sm font-medium text-text-primary">Background</h2>
           <select value={backgroundId} onChange={(e) => setBackgroundId(e.target.value)} className="mt-2 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm">
             {backgroundOptions.map((bg) => (
@@ -338,7 +338,7 @@ export function CharacterSetupScreen() {
           )}
         </section>
 
-        <section className="mt-6">
+        <section className="mt-6 rounded-md border border-border bg-surface p-3">
           <h2 className="text-sm font-medium text-text-primary">Species</h2>
           <select value={speciesId} onChange={(e) => selectSpecies(e.target.value)} className="mt-2 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm">
             {speciesOptions.map((sp) => (
@@ -368,7 +368,7 @@ export function CharacterSetupScreen() {
           })}
         </section>
 
-        <section className="mt-6">
+        <section className="mt-6 rounded-md border border-border bg-surface p-3">
           <h2 className="text-sm font-medium text-text-primary">Class</h2>
           <div className="mt-2 flex gap-2">
             {(['barbarian', 'bard', 'cleric', 'druid', 'fighter', 'monk', 'paladin', 'ranger', 'wizard', 'rogue', 'sorcerer', 'warlock'] as const).map((id) => (
@@ -397,7 +397,7 @@ export function CharacterSetupScreen() {
           )}
         </section>
 
-        <section className="mt-6">
+        <section className="mt-6 rounded-md border border-border bg-surface p-3">
           <label className="block text-sm font-medium text-text-primary" htmlFor="char-name">Name</label>
           <input
             id="char-name"
@@ -409,7 +409,7 @@ export function CharacterSetupScreen() {
           />
         </section>
 
-        <section className="mt-6">
+        <section className="mt-6 rounded-md border border-border bg-surface p-3">
           <h2 className="text-sm font-medium text-text-primary">Ability Scores</h2>
           <div className="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-3">
             {ABILITIES.map((ability) => (
@@ -430,7 +430,7 @@ export function CharacterSetupScreen() {
 
         {classId === 'barbarian' && (
           <>
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Weapon Mastery — choose 2 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({weaponMastery.length}/2 selected)</span>
@@ -451,7 +451,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Simple or Martial Melee weapons only. Changeable after every Long Rest.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
               <div className="mt-2 flex flex-col gap-1.5">
                 {['barbarianPackA', 'barbarianPackB'].map((packId) => {
@@ -471,7 +471,7 @@ export function CharacterSetupScreen() {
 
         {classId === 'bard' && (
           <>
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Cantrips — choose {cantripMax} <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({cantrips.length}/{cantripMax} selected)</span>
@@ -487,7 +487,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Dancing Lights and Vicious Mockery are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Prepared Spells — choose 4 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({bardKnownSpells.length}/4 selected)</span>
@@ -504,7 +504,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Charm Person, Color Spray, Dissonant Whispers, and Healing Word are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
               <div className="mt-2 flex flex-col gap-1.5">
                 {['bardPackA', 'bardPackB'].map((packId) => {
@@ -524,7 +524,7 @@ export function CharacterSetupScreen() {
 
         {classId === 'cleric' && (
           <>
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Divine Order <span className="text-danger">*</span></h2>
               <div className="mt-2 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                 {divineOrderOptions.map((option) => (
@@ -536,7 +536,7 @@ export function CharacterSetupScreen() {
               </div>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Cantrips — choose {cantripMax} <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({cantrips.length}/{cantripMax} selected)</span>
@@ -552,7 +552,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Guidance, Sacred Flame, and Thaumaturgy are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Prepared Spells — choose 4 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({clericPrepared.length}/4 selected)</span>
@@ -569,7 +569,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Bless, Cure Wounds, Guiding Bolt, and Shield of Faith are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
               <div className="mt-2 flex flex-col gap-1.5">
                 {['clericPackA', 'clericPackB'].map((packId) => {
@@ -589,7 +589,7 @@ export function CharacterSetupScreen() {
 
         {classId === 'druid' && (
           <>
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Primal Order <span className="text-danger">*</span></h2>
               <div className="mt-2 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                 {primalOrderOptions.map((option) => (
@@ -601,7 +601,7 @@ export function CharacterSetupScreen() {
               </div>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Cantrips — choose {cantripMax} <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({cantrips.length}/{cantripMax} selected)</span>
@@ -617,7 +617,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Druidcraft and Produce Flame are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Prepared Spells — choose 4 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({druidPrepared.length}/4 selected)</span>
@@ -634,7 +634,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Animal Friendship, Cure Wounds, Faerie Fire, and Thunderwave are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
               <div className="mt-2 flex flex-col gap-1.5">
                 {['druidPackA', 'druidPackB'].map((packId) => {
@@ -654,7 +654,7 @@ export function CharacterSetupScreen() {
 
         {classId === 'fighter' && (
           <>
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Fighting Style <span className="text-danger">*</span></h2>
               <div className="mt-2 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                 {FIGHTING_STYLE_FEAT_IDS.map((featId) => {
@@ -673,7 +673,7 @@ export function CharacterSetupScreen() {
               </div>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Weapon Mastery — choose 3 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({weaponMastery.length}/3 selected)</span>
@@ -694,7 +694,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Changeable after every Long Rest.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
               <div className="mt-2 flex flex-col gap-1.5">
                 {['fighterPackA', 'fighterPackB', 'fighterPackC'].map((packId) => {
@@ -713,7 +713,7 @@ export function CharacterSetupScreen() {
         )}
 
         {classId === 'monk' && (
-          <section className="mt-6">
+          <section className="mt-6 rounded-md border border-border bg-surface p-3">
             <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
             <div className="mt-2 flex flex-col gap-1.5">
               {['monkPackA', 'monkPackB'].map((packId) => {
@@ -733,7 +733,7 @@ export function CharacterSetupScreen() {
 
         {classId === 'paladin' && (
           <>
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Weapon Mastery — choose 2 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({weaponMastery.length}/2 selected)</span>
@@ -754,7 +754,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Changeable after every Long Rest.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Prepared Spells — choose 2 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({paladinPrepared.length}/2 selected)</span>
@@ -771,7 +771,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Heroism and Searing Smite are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
               <div className="mt-2 flex flex-col gap-1.5">
                 {['paladinPackA', 'paladinPackB'].map((packId) => {
@@ -791,7 +791,7 @@ export function CharacterSetupScreen() {
 
         {classId === 'ranger' && (
           <>
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Weapon Mastery — choose 2 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({weaponMastery.length}/2 selected)</span>
@@ -812,7 +812,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Changeable after every Long Rest.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Prepared Spells — choose 2 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({rangerPrepared.length}/2 selected)</span>
@@ -829,7 +829,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Cure Wounds and Ensnaring Strike are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
               <div className="mt-2 flex flex-col gap-1.5">
                 {['rangerPackA', 'rangerPackB'].map((packId) => {
@@ -849,7 +849,7 @@ export function CharacterSetupScreen() {
 
         {classId === 'wizard' && (
           <>
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Cantrips — choose {cantripMax} <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({cantrips.length}/{cantripMax} selected)</span>
@@ -865,7 +865,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Light, Mage Hand, and Ray of Frost are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Spellbook — starts with 6 level 1 spells <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({spellbook.length}/6 selected)</span>
@@ -881,7 +881,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Detect Magic, Feather Fall, Mage Armor, Magic Missile, Sleep, and Thunderwave are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Prepared Spells — choose 4 from your spellbook <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({prepared.length}/4 selected)</span>
@@ -904,7 +904,7 @@ export function CharacterSetupScreen() {
               )}
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
               <div className="mt-2 flex flex-col gap-1.5">
                 {['wizardPackA', 'wizardPackB'].map((packId) => {
@@ -924,7 +924,7 @@ export function CharacterSetupScreen() {
 
         {classId === 'rogue' && (
           <>
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Expertise — choose 2 skills <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({rogueExpertise.length}/2 selected)</span>
@@ -943,7 +943,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Double Proficiency Bonus on checks with these skills. 2 more at level 6.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Weapon Mastery — choose 2 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({weaponMastery.length}/2 selected)</span>
@@ -964,7 +964,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Changeable after every Long Rest.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
               <div className="mt-2 flex flex-col gap-1.5">
                 {['roguePackA', 'roguePackB'].map((packId) => {
@@ -984,7 +984,7 @@ export function CharacterSetupScreen() {
 
         {classId === 'sorcerer' && (
           <>
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Cantrips — choose {cantripMax} <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({cantrips.length}/{cantripMax} selected)</span>
@@ -1000,7 +1000,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Light, Prestidigitation, Shocking Grasp, and Fire Bolt are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Prepared Spells — choose 2 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({sorcererKnownSpells.length}/2 selected)</span>
@@ -1017,7 +1017,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Burning Hands and Detect Magic are recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
               <div className="mt-2 flex flex-col gap-1.5">
                 {['sorcererPackA', 'sorcererPackB'].map((packId) => {
@@ -1037,7 +1037,7 @@ export function CharacterSetupScreen() {
 
         {classId === 'warlock' && (
           <>
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Cantrips — choose {cantripMax} <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({cantrips.length}/{cantripMax} selected)</span>
@@ -1053,7 +1053,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Eldritch Blast is recommended.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">
                 Spells Known — choose 2 <span className="text-danger">*</span>
                 <span className="ml-2 text-xs text-text-secondary">({warlockKnownSpells.length}/2 selected)</span>
@@ -1069,7 +1069,7 @@ export function CharacterSetupScreen() {
               </div>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Eldritch Invocation <span className="text-danger">*</span></h2>
               <div className="mt-2 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                 {CREATION_LEGAL_INVOCATIONS.map((option) => (
@@ -1082,7 +1082,7 @@ export function CharacterSetupScreen() {
               <p className="mt-1 text-xs text-text-secondary">Only invocations with no level/prerequisite requirement can be chosen at level 1. More grow available (and this one becomes freely replaceable) on level up.</p>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-6 rounded-md border border-border bg-surface p-3">
               <h2 className="text-sm font-medium text-text-primary">Starting Equipment</h2>
               <div className="mt-2 flex flex-col gap-1.5">
                 {['warlockPackA', 'warlockPackB'].map((packId) => {
