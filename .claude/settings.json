@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"/c/Program Files/Git/mingw64/bin/pdftotext.exe\" *)"
+    ]
+  }
+}

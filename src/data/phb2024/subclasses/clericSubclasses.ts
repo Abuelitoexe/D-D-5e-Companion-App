@@ -1,0 +1,253 @@
+import type { FeatureDefinition, ResourceDefinition, SubclassDefinition } from '../../../domain/types'
+
+const src = (page: number) => ({ sourceId: 'PHB2024' as const, sourceLabel: 'PHB 2024', page })
+
+// PHB 2024 p.72-77 — all 4 Cleric subclasses, extracted via pdftotext -raw.
+// All 4 share the same 3/6/17 feature-level pattern (no level 10/14 features,
+// confirmed directly from each subclass's own prose — unlike most other
+// classes' 3/6/10/14 subclass pattern).
+export const clericSubclasses: Record<string, SubclassDefinition> = {
+  lifeDomain: {
+    id: 'lifeDomain',
+    name: 'Life Domain',
+    parentClassId: 'cleric',
+    minimumLevel: 3,
+    source: src(72),
+    featuresByLevel: {
+      3: ['life-disciple-of-life', 'life-life-domain-spells', 'life-preserve-life'],
+      6: ['life-blessed-healer'],
+      17: ['life-supreme-healing'],
+    },
+  },
+  lightDomain: {
+    id: 'lightDomain',
+    name: 'Light Domain',
+    parentClassId: 'cleric',
+    minimumLevel: 3,
+    source: src(73),
+    featuresByLevel: {
+      3: ['light-light-domain-spells', 'light-radiance-of-the-dawn', 'light-warding-flare'],
+      6: ['light-improved-warding-flare'],
+      17: ['light-corona-of-light'],
+    },
+    resources: ['lightWardingFlare'],
+  },
+  trickeryDomain: {
+    id: 'trickeryDomain',
+    name: 'Trickery Domain',
+    parentClassId: 'cleric',
+    minimumLevel: 3,
+    source: src(74),
+    featuresByLevel: {
+      3: ['trickery-blessing-of-the-trickster', 'trickery-invoke-duplicity', 'trickery-trickery-domain-spells'],
+      6: ['trickery-tricksters-transposition'],
+      17: ['trickery-improved-duplicity'],
+    },
+  },
+  warDomain: {
+    id: 'warDomain',
+    name: 'War Domain',
+    parentClassId: 'cleric',
+    minimumLevel: 3,
+    source: src(76),
+    featuresByLevel: {
+      3: ['war-guided-strike', 'war-war-domain-spells', 'war-war-priest'],
+      6: ['war-war-gods-blessing'],
+      17: ['war-avatar-of-battle'],
+    },
+    resources: ['warWarPriest'],
+  },
+}
+
+export const clericSubclassResources: Record<string, ResourceDefinition> = {
+  lightWardingFlare: {
+    id: 'lightWardingFlare',
+    name: 'Warding Flare',
+    minimumLevel: 3,
+    maximum: { kind: 'abilityModifier', ability: 'Wisdom', minimum: 1 },
+    refresh: { default: ['longRest'] },
+    source: src(73),
+  },
+  warWarPriest: {
+    id: 'warWarPriest',
+    name: 'War Priest',
+    minimumLevel: 3,
+    maximum: { kind: 'abilityModifier', ability: 'Wisdom', minimum: 1 },
+    refresh: { default: ['shortRest', 'longRest'] },
+    source: src(75),
+  },
+}
+
+export const clericSubclassFeatures: Record<string, FeatureDefinition> = {
+  // ---- Life Domain ----
+  'life-disciple-of-life': {
+    id: 'life-disciple-of-life',
+    name: 'Disciple of Life',
+    source: src(72),
+    minimumLevel: 3,
+    activation: 'passive',
+    summary: 'A healing spell cast with a slot restores 2 + the slot\'s level in additional HP to its target(s), on the turn you cast it.',
+  },
+  'life-life-domain-spells': {
+    id: 'life-life-domain-spells',
+    name: 'Life Domain Spells',
+    source: src(72),
+    minimumLevel: 3,
+    activation: 'passive',
+    summary: 'Always-prepared spells by level: 3 — Aid, Bless, Cure Wounds, Lesser Restoration; 5 — Mass Healing Word, Revivify; 7 — Aura of Life, Death Ward; 9 — Greater Restoration, Mass Cure Wounds. (Bless and Cure Wounds are in the registry; the rest are not yet — description only for those.)',
+  },
+  'life-preserve-life': {
+    id: 'life-preserve-life',
+    name: 'Preserve Life',
+    source: src(72),
+    minimumLevel: 3,
+    activation: 'special',
+    resourceId: 'channelDivinity',
+    summary: 'As a Magic action, expend a Channel Divinity use: distribute HP equal to 5x your Cleric level among Bloodied creatures within 30 ft (including yourself), none restored past half their HP maximum.',
+  },
+  'life-blessed-healer': {
+    id: 'life-blessed-healer',
+    name: 'Blessed Healer',
+    source: src(73),
+    minimumLevel: 6,
+    activation: 'passive',
+    summary: 'Immediately after casting a healing spell with a slot on someone else, you regain HP equal to 2 + the slot\'s level.',
+  },
+  'life-supreme-healing': {
+    id: 'life-supreme-healing',
+    name: 'Supreme Healing',
+    source: src(73),
+    minimumLevel: 17,
+    activation: 'passive',
+    summary: 'Whenever you would roll dice to restore HP with a spell or Channel Divinity, use the highest possible number on each die instead of rolling.',
+  },
+  // ---- Light Domain ----
+  'light-light-domain-spells': {
+    id: 'light-light-domain-spells',
+    name: 'Light Domain Spells',
+    source: src(73),
+    minimumLevel: 3,
+    activation: 'passive',
+    summary: 'Always-prepared spells by level: 3 — Burning Hands, Faerie Fire, Scorching Ray, See Invisibility; 5 — Daylight, Fireball; 7 — Arcane Eye, Wall of Fire; 9 — Flame Strike, Scrying. (Not yet in the spell registry — description only.)',
+  },
+  'light-radiance-of-the-dawn': {
+    id: 'light-radiance-of-the-dawn',
+    name: 'Radiance of the Dawn',
+    source: src(73),
+    minimumLevel: 3,
+    activation: 'special',
+    resourceId: 'channelDivinity',
+    summary: 'As a Magic action, expend a Channel Divinity use: dispel magical Darkness in a 30-ft Emanation, and chosen creatures in it take 2d10 + your Cleric level Radiant damage on a failed Constitution save (half on success).',
+  },
+  'light-warding-flare': {
+    id: 'light-warding-flare',
+    name: 'Warding Flare',
+    source: src(73),
+    minimumLevel: 3,
+    activation: 'reaction',
+    resourceId: 'lightWardingFlare',
+    summary: 'When a creature within 30 ft that you can see makes an attack roll, impose Disadvantage on it. Uses equal to your Wisdom modifier (min 1), refilling on a Long Rest.',
+  },
+  'light-improved-warding-flare': {
+    id: 'light-improved-warding-flare',
+    name: 'Improved Warding Flare',
+    source: src(73),
+    minimumLevel: 6,
+    activation: 'passive',
+    summary: 'Warding Flare also refills on a Short Rest, and using it grants the triggering attack\'s target 2d6 + Wisdom modifier Temporary HP.',
+  },
+  'light-corona-of-light': {
+    id: 'light-corona-of-light',
+    name: 'Corona of Light',
+    source: src(73),
+    minimumLevel: 17,
+    activation: 'special',
+    summary: 'As a Magic action, emit Bright Light (60 ft) and Dim Light (+30 ft) for 1 minute; enemies in the Bright Light have Disadvantage on saves against Radiance of the Dawn and Fire/Radiant spells.',
+  },
+  // ---- Trickery Domain ----
+  'trickery-blessing-of-the-trickster': {
+    id: 'trickery-blessing-of-the-trickster',
+    name: 'Blessing of the Trickster',
+    source: src(74),
+    minimumLevel: 3,
+    activation: 'special',
+    summary: 'As a Magic action, give yourself or a willing creature within 30 ft Advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this again.',
+  },
+  'trickery-invoke-duplicity': {
+    id: 'trickery-invoke-duplicity',
+    name: 'Invoke Duplicity',
+    source: src(74),
+    minimumLevel: 3,
+    activation: 'bonusAction',
+    resourceId: 'channelDivinity',
+    summary: 'Expend a Channel Divinity use to create an illusory duplicate of yourself within 30 ft for 1 minute: cast spells as if from its space, gain Advantage attacking a creature adjacent to both you and it, and move it up to 30 ft as a Bonus Action.',
+  },
+  'trickery-trickery-domain-spells': {
+    id: 'trickery-trickery-domain-spells',
+    name: 'Trickery Domain Spells',
+    source: src(75),
+    minimumLevel: 3,
+    activation: 'passive',
+    summary: 'Always-prepared spells by level: 3 — Charm Person, Disguise Self, Invisibility, Pass without Trace; 5 — Hypnotic Pattern, Nondetection; 7 — Confusion, Dimension Door; 9 — Dominate Person, Modify Memory. (Charm Person is in the registry; the rest are not yet — description only for those.)',
+  },
+  'trickery-tricksters-transposition': {
+    id: 'trickery-tricksters-transposition',
+    name: "Trickster's Transposition",
+    source: src(75),
+    minimumLevel: 6,
+    activation: 'passive',
+    summary: 'Whenever you create or move your Invoke Duplicity illusion with its Bonus Action, you can teleport to swap places with it.',
+  },
+  'trickery-improved-duplicity': {
+    id: 'trickery-improved-duplicity',
+    name: 'Improved Duplicity',
+    source: src(75),
+    minimumLevel: 17,
+    activation: 'passive',
+    summary: 'Attacks by you and allies against a creature within 5 ft of your Invoke Duplicity illusion have Advantage; when the illusion ends, you or a creature within 5 ft of it regains HP equal to your Cleric level.',
+  },
+  // ---- War Domain ----
+  'war-guided-strike': {
+    id: 'war-guided-strike',
+    name: 'Guided Strike',
+    source: src(76),
+    minimumLevel: 3,
+    activation: 'special',
+    resourceId: 'channelDivinity',
+    summary: 'When you or a creature within 30 ft misses an attack roll, expend a Channel Divinity use to give it +10 (a Reaction if benefiting another creature).',
+  },
+  'war-war-domain-spells': {
+    id: 'war-war-domain-spells',
+    name: 'War Domain Spells',
+    source: src(76),
+    minimumLevel: 3,
+    activation: 'passive',
+    summary: 'Always-prepared spells by level: 3 — Guiding Bolt, Magic Weapon, Shield of Faith, Spiritual Weapon; 5 — Crusader\'s Mantle, Spirit Guardians; 7 — Fire Shield, Freedom of Movement; 9 — Hold Monster, Steel Wind Strike. (Guiding Bolt and Shield of Faith are in the registry; the rest are not yet — description only for those.)',
+  },
+  'war-war-priest': {
+    id: 'war-war-priest',
+    name: 'War Priest',
+    source: src(76),
+    minimumLevel: 3,
+    activation: 'bonusAction',
+    resourceId: 'warWarPriest',
+    summary: 'Make one weapon or Unarmed Strike attack as a Bonus Action. Uses equal to your Wisdom modifier (min 1), refilling on a Short or Long Rest.',
+  },
+  'war-war-gods-blessing': {
+    id: 'war-war-gods-blessing',
+    name: "War God's Blessing",
+    source: src(76),
+    minimumLevel: 6,
+    activation: 'special',
+    resourceId: 'channelDivinity',
+    summary: 'Expend a Channel Divinity use to cast Shield of Faith or Spiritual Weapon without a slot; the spell drops Concentration in favor of a fixed 1-minute duration.',
+  },
+  'war-avatar-of-battle': {
+    id: 'war-avatar-of-battle',
+    name: 'Avatar of Battle',
+    source: src(77),
+    minimumLevel: 17,
+    activation: 'passive',
+    summary: 'Resistance to Bludgeoning, Piercing, and Slashing damage.',
+  },
+}
